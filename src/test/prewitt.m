@@ -1,9 +1,9 @@
-nama = input('Masukkan nama bmp: ', 's');
-if exist([nama, '.bmp'], 'file') == 0
+nama = input('Masukkan nama jpg: ', 's');
+if exist([nama, '.jpg'], 'file') == 0
     error('Tidak ada file dengan nama tersebut!');
 end
 
-I = imread([nama, '.bmp']);
+I = imread([nama, '.jpg']);
 
 [result] = prewitt_operator(I);
 

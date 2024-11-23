@@ -27,7 +27,7 @@ function [result] = sobel_operator(I)
                     end
                 end
                 
-                magnitude = sqrt(sx^2 + sy^2);
+                magnitude = floor(sqrt(sx^2 + sy^2));
 
                 if (magnitude < 0)
                     magnitude = 0;
