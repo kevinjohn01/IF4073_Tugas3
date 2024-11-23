@@ -1,4 +1,4 @@
-function outputImage = convolution(image, convMatrix)
+function outputImage = convolution(image, convMatrix, grayscale)
     [rows, cols, colorChannels] = size(image);
     [rowsConv, colsConv] = size(convMatrix);
     
@@ -24,6 +24,12 @@ function outputImage = convolution(image, convMatrix)
                     outputImage(i,j,k) = uint8(temp);
                 end
             end
+        end
+    end
+
+    if grayscale == true
+        if size(outputImage, 3) == 3
+            outputImage = rgb2gray(outputImage);
         end
     end
 end
