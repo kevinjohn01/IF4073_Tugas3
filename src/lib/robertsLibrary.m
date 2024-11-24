@@ -1,4 +1,5 @@
-function outputImage = roberts(image)
+function outputImage = robertsLibrary(image)
+    
     image = double(image);
     [rows, cols, colorChannel] = size(image);
     
