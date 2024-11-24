@@ -1,6 +1,7 @@
 function outputImage = laplaceOfGaussian(image,sigma)
     % Kernel konvolusi citra
     sizeKernel = ceil(6 * sigma);
+    disp(sizeKernel);
 
     % ukuran kernel harus ganjil
     if mod(sizeKernel, 2) == 0

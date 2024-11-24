@@ -7,8 +7,8 @@ function outputImage = roberts(image)
     Ry = [0 1; -1 0]; % Vertical gradient
     
     % matriks output
-    Jx = zeros(rows-1, cols-1, colorChannel);
-    Jy = zeros(rows-1, cols-1, colorChannel);
+    Jx = zeros(rows, cols, colorChannel);
+    Jy = zeros(rows, cols, colorChannel);
     
     % Konvolusi citra terhadap masing-masing kernel
     for k = 1:colorChannel
