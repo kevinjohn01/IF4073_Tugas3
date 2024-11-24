@@ -1,3 +1,6 @@
-img = imread("img\7-2.jpg");
-result = laplace(img,[1 1 1; 1 -8 1; 1 1 1]);
+img = imread("img25.jpg");
+result = laplace(img);
+result2 = laplaceLibrary(img);
+figure; imshow(img);
 figure; imshow(result);
+figure; imshow(result2);

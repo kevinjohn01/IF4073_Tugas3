@@ -25,7 +25,7 @@ function outputImage = roberts(image)
     end
     
     % Menghitung Jedge
-    Jedge = sqrt(gradX.^2 + Jy.^2);
+    Jedge = sqrt(Jx.^2 + Jy.^2);
     
     % Normalize gradient magnitude to range 0-255
     outputImage = uint8(mat2gray(Jedge) * 255);
