@@ -31,7 +31,7 @@ function [result] = prewitt_operator(I)
 
                 if (magnitude < 0)
                     magnitude = 0;
-                elseif (M > 255)
+                elseif (magnitude > 255)
                     magnitude = 255;
                 end
     
