@@ -5,7 +5,7 @@ end
 
 I = imread([nama, '.jpg']);
 
-[H, lines] = lineDetectionHoughLibrary(I);
+[H, theta, rho, line_I] = lineDetectionHoughLibrary(I);
 
-% figure; imshow(H);
-% figure; imshow(line_I);
+imshowHough(H, theta, rho);
+figure; imshow(line_I);
