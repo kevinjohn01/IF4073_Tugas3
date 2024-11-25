@@ -1,8 +1,6 @@
 img = imread("img\img26.jpg");
-result = roberts(img);
-result2 = logLibrary(img,1.4);
+result = laplace(img);
 segmented = segmentation(result,img);
 figure; imshow(img);
 figure; imshow(result);
-figure; imshow(result2);
 figure; imshow(segmented);

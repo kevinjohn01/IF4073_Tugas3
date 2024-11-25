@@ -8,16 +8,16 @@ function outputImage = laplaceOfGaussian(image,sigma)
         sizeKernel = sizeKernel + 1;
     end
 
-    % kernel generation
+    % membuat kernel untuk operasi LoG berdasarkan STD
     [x, y] = meshgrid(-floor(sizeKernel/2):floor(sizeKernel/2));
 
     % operasi LoG
     LoG = (x.^2 + y.^2 - 2*sigma^2) .* exp(-(x.^2 + y.^2) / (2*sigma^2));
     LoG = LoG / (2 * pi * sigma^4); % Normalisasi kernel
     
-    % Apply convolution
+    % Proses konvolusi
     output = convolution(double(image), double(LoG));
     
-    % Normalize to 0-255
+    % Normalisasi citra
     outputImage = uint8(mat2gray(output) * 255);
 end

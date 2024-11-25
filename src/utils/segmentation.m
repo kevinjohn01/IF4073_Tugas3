@@ -1,8 +1,10 @@
 function imgout = segmentation(imgin, imgoriginal)
     % referensi: https://www.mathworks.com/help/images/detecting-a-cell-using-image-segmentation.html
     linelength = 3;
-    imgin = rgb2gray(imgin);
-    imgin = imbinarize(imgin);
+    if (size(imgin,3) == 3)
+        imgin = rgb2gray(imgin);
+        imgin = imbinarize(imgin);
+    end
     
     dilated = imclearborder(imgin);
     
