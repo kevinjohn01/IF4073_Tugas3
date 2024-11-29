@@ -2,18 +2,19 @@ function [out] = inverse_hough_transform(edge_I, P)
     [M, N] = size(edge_I);
     [p, q] = size(P);
 
-    [COS, SIN] = lookup_table(p);
+    [COS, SIN] = lookup_table(q);
 
     out = zeros(M, N);
     SQRTD = sqrt(M^2 + N^2);
 
-    for k = 1 : p
-        for l = 1 : q
+    for k = 1 : q
+        for l = 1 : p
             y = 0;
+            x = 0;
 
-            if P(k, l) == 1
-                for i = 1 : M
-                    r = (l * 2.0 * SQRTD / (q - 1)) - SQRTD;
+            if P(l, k) == 1
+                for i = 1 : N
+                    r = (l * 2.0 * SQRTD / (p - 1)) - SQRTD;
                     
                     if SIN(k) == 0
                         y = y + 1;
@@ -24,11 +25,25 @@ function [out] = inverse_hough_transform(edge_I, P)
                     y = y + 0.5;
                     j = floor(y);
                     
-                    if j >= 1 && j <= N
-                        if edge_I(i, j) == 1
-                            % Pemungutan suara
-                            out(i, j) = out(i, j) + 1;
-                        end
+                    if j >= 1 && j <= M
+                        out(j, i) = 1;
+                    end
+                end
+
+                for j = 1 : M
+                    r = (l * 2.0 * SQRTD / (p - 1)) - SQRTD;
+                    
+                    if COS(k) == 0
+                        x = x + 1;
+                    else
+                        x = (r - (j * SIN(k))) / COS(k);
+                    end
+                    
+                    x = x + 0.5;
+                    i = floor(x);
+                    
+                    if i >= 1 && i <= N
+                        out(j, i) = 1;
                     end
                 end
             end

@@ -1,22 +1,24 @@
-function [P] = hough_transform(edge_I, p, q)
+function [P] = hough_transform(edge_I, q, p)
     [M, N] = size(edge_I);
     SQRTD = sqrt(M^2 + N^2);
     
+    p = floor(p + 2*SQRTD);
+
     P = zeros(p, q);
-    [COS, SIN] = lookup_table(p);
+    [COS, SIN] = lookup_table(q);
 
     for k = 1 : M
         for l = 1 : N
             if edge_I(k, l) == 1
-                for i = 1 : p
-                    r = k * COS(i) + l * SIN(i);
+                for i = 1 : q
+                    r = l * COS(i) + k * SIN(i);
 
-                    r = (r + SQRTD) / (2 * SQRTD) * (q - 1) + 0.5;
+                    r = (r + SQRTD) / (2 * SQRTD) * (p - 1) + 0.5;
                     j = floor(r);
                     
-                    if j >= 1 && j <= q
+                    if j >= 1 && j <= p
                         % Pemungutan suara
-                        P(i, j) = P(i, j) + 1;
+                        P(j, i) = P(j, i) + 1;
                     end
                 end
             end

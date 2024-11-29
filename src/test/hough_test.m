@@ -8,4 +8,4 @@ I = imread([nama, '.jpg']);
 [result] = canny_operator(I);
 
 P = hough_transform(result, 180, 200);
-imshow(P, []);
+figure; imshow(P, []);
