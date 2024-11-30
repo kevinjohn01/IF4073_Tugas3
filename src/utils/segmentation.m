@@ -1,7 +1,7 @@
-function imgout = segmentation(imgin, imgoriginal)
+function imgout = segmentation(imgin, imgoriginal, clearBorder, lineLength)
     % referensi: https://www.mathworks.com/help/images/detecting-a-cell-using-image-segmentation.html
 
-    linelength = 6; % Panjang elemen struktural untuk dilasi garis
+    linelength = lineLength; % Panjang elemen struktural untuk dilasi garis
     minObjectSize = 4000; % Ukuran minimum untuk area yang dipertahankan
 
     %Cek tipe data imgin
@@ -14,8 +14,11 @@ function imgout = segmentation(imgin, imgoriginal)
     end
     
     % 2. Clear border untuk menghilangkan objek di tepi gambar
-    %dilated = imclearborder(imgin);
-    dilated = imgin;
+    if (clearBorder)
+        dilated = imclearborder(imgin);
+    else
+        dilated = imgin;
+    end
 
     % 3. Penguatan garis (Dilasi dan Closing)
     % Menggunakan elemen struktural garis untuk memperjelas tepi
