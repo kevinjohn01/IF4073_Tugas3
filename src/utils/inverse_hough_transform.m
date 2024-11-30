@@ -4,7 +4,7 @@ function [out] = inverse_hough_transform(edge_I, P)
 
     [COS, SIN] = lookup_table(q);
 
-    out = zeros(M, N);
+    out = zeros(M, N, 3);
     SQRTD = sqrt(M^2 + N^2);
 
     for k = 1 : q
@@ -26,7 +26,7 @@ function [out] = inverse_hough_transform(edge_I, P)
                     j = floor(y);
                     
                     if j >= 1 && j <= M
-                        out(j, i) = 1;
+                        out(j, i, 1) = 1;
                     end
                 end
 
@@ -43,7 +43,7 @@ function [out] = inverse_hough_transform(edge_I, P)
                     i = floor(x);
                     
                     if i >= 1 && i <= N
-                        out(j, i) = 1;
+                        out(j, i, 1) = 1;
                     end
                 end
             end
