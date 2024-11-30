@@ -1,4 +1,5 @@
 function [result] = sobel_operator(I)
+    % Menyiapkan mask operator Sobel
     mask_x = [-1,0,1; -2,0,2; -1,0,1];
     mask_y = [1,2,1; 0,0,0; -1,-2,-1];
     
@@ -11,6 +12,7 @@ function [result] = sobel_operator(I)
     % Menyiapkan matriks citra keluaran seukuran I
     result = zeros(M, N, C);
     
+    % Iterasi untuk mengonvolusi citra dengan mask
     for k = 1 : C
         for i = 1 : M - X + 1
             for j = 1 : N - Y + 1
@@ -27,20 +29,24 @@ function [result] = sobel_operator(I)
                     end
                 end
                 
+                % Hitung magnitudo gradien untuk menggantikan nilai 
+                % tengah pada bagian citra yang tersorot oleh mask
                 magnitude = floor(sqrt(sx^2 + sy^2));
-
+                
+                % CLIPPING
                 if (magnitude < 0)
                     magnitude = 0;
                 elseif (magnitude > 255)
                     magnitude = 255;
                 end
-    
+                
+                % Mengganti nilai tengah yang tersorot mask
                 result((i + floor(X/2)), (j + floor(Y/2)), k) = magnitude;
             end
         end
     end
 
-
+    % Memasukkan bagian pinggir citra yang tidak ikut dikonvolusi
     for i = 1 : M
         for j = 1 : N
             for k = 1 : C
