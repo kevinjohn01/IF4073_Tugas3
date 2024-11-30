@@ -9,12 +9,12 @@ function [H, theta, rho, line_I] = lineDetectionHoughLibrary(I)
     P = houghpeaks(H,5,'threshold',ceil(0.3*max(H(:))));
     
     % Identifikasi puncak-puncak suara
-    x = theta(P(:,2));
-    y = rho(P(:,1));
-    plot(x,y,'s','color','black');
+    %x = theta(P(:,2));
+    %y = rho(P(:,1));
+    %plot(x,y,'s','color','black');
 
     % Temukan garis-garis dengan fungsi houghlines
-    lines = houghlines(BW, theta, rho, P, 'FillGap', 5, 'MinLength',40);
+    lines = houghlines(BW, theta, rho, P, 'FillGap', 10, 'MinLength',40);
     
     % Membuat citra dengan garis-garis hasil deteksi Hough
     line_I = I;

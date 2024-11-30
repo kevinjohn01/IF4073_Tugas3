@@ -1,5 +1,5 @@
 function outputImage = laplaceOfGaussian(image,sigma)
-    % Kernel konvolusi citra
+    % Kernel konvolusi citra (-3*sigma sampai 3*sigma) 
     sizeKernel = ceil(6 * sigma);
     disp(sizeKernel);
 
@@ -11,7 +11,7 @@ function outputImage = laplaceOfGaussian(image,sigma)
     % membuat kernel untuk operasi LoG berdasarkan STD
     [x, y] = meshgrid(-floor(sizeKernel/2):floor(sizeKernel/2));
 
-    % operasi LoG
+    % membuat mask LoG
     LoG = (x.^2 + y.^2 - 2*sigma^2) .* exp(-(x.^2 + y.^2) / (2*sigma^2));
     LoG = LoG / (2 * pi * sigma^4); % Normalisasi kernel
     
